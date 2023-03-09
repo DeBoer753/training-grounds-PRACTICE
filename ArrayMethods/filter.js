@@ -2,7 +2,6 @@
 // Notes:  
 // -- Filter only lets you get elements of an array (not characters, unless you split the array first)
 
-
 // Filter If Greater Than: 
 let numbers = [17,13,25,46]
 let filteredNumbers = numbers.filter(x => x > 22)
