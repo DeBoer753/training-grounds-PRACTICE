@@ -31,3 +31,7 @@ for (let i = 0; i < numPkg5.length; i++ ) {
   }
 }
 
+// Write a function that takes in an array of numbers and outputs the maximum number:
+let numz = [1,2,3,6,9,23,13,15,17]
+let numzResult = numz.reduce((a, i) => Math.max(a, i))
+console.log('numzResult: ', numzResult);
