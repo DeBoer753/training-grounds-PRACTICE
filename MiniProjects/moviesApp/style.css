@@ -1,0 +1,56 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px red solid; 
+}
+
+header h1 {
+  margin: 0;
+}
+
+header input {
+  margin: 0 10px 0 0;
+}
+
+header .search-input-box {
+  display: flex;
+  align-items: center;
+  /* border: 1px red solid; */
+
+}
+
+.movie-card-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px red solid; 
+  margin: 20px 0 0 0;
+  padding: 10px;
+}
+
+.movie-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px red solid;
+  width: 200px;
+  margin: 5px 0 5px 0;
+}
+
+h2 {
+  border: 1px solid red; 
+  margin: 10px 10px 0 10px;
+  text-align: center;
+}
+
+.movie-title {
+  border: 1px solid red; 
+}
+
+.movie-img {
+  float: left;
+  width:  150px;
+  height: 200px;
+  margin: 0 0 10px 0;
+  object-fit: cover;
+}
