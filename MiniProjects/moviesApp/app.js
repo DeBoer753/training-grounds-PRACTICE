@@ -25,14 +25,8 @@ searchEl.addEventListener('click', () => {
       
       // ISSUE: come back to this problem
       let movieData = data.results.filter(obj => {
-        for (let key in obj) {
-          if (obj[key].releaseYear !== null) {
-            return true
-          } else {
-            return false
-          }
-        } 
-      })
+        return obj.releaseYear !== null 
+      });
 
       console.log('movieData: ', movieData);
 
