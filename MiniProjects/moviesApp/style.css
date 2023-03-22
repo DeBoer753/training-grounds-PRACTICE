@@ -80,9 +80,11 @@ header p:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  width: 100px;
 }
 
 .movie-cards .descriptions {
+  display: none;
   text-align: center;
   margin: 10px 20px 10px 20px;
   font-size: 10px;
