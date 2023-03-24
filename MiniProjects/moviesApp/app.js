@@ -9,9 +9,10 @@ To Do:
 
 // ----------------------------------------------------------------------->
 
-// VARIABLE LIBRARY (INDEX)
-let imgThumbnailEl = document.querySelector('#imgThumbnail')
+// VARIABLE LIBRARY
 let searchEl = document.querySelector('#search')
+let myListEl = document.querySelector('#myList')
+let imgThumbnailEl = document.querySelector('#imgThumbnail')
 let movieSearchCardBox = document.querySelector('#movieSearchCardBox')
 let movieCardBoxEl1 = document.querySelector('#movieCardBox1')
 let movieCardBoxEl2 = document.querySelector('#movieCardBox2')
@@ -76,84 +77,84 @@ fetch(row1Url, options)
         </div>  
       `
     }).join('')
-
-    // FETCH (row2)
-    fetch(row2Url, options)
-      .then(res => res.json())
-      .then(data => {
-        console.log("data test (row2): ", data.results);
-
-        let row2Data = data.results.filter(obj => {
-          return obj.releaseYear !== null && obj.releaseYear.year !== null && obj.plot !== null && obj.primaryImage !== null
-        });
-        console.log('row2Data: ', row2Data);
-    
-          // Render Category: Crime
-          movieCardBoxEl2.innerHTML = row2Data.map((movie) => {
-            console.log(movie)
-            // movieTitle: creates "..." if movie title is too long
-            let movieTitle = () => {
-              if (movie.titleText.text.length >= 12) {
-                return movie.titleText.text.substring(0,12) + "..."
-              } else {
-                return movie.titleText.text
-              }
-            }
-      
-            return `
-              <div class="movie-cards">
-                <h2>${movieTitle()}</h2>
-                <p>${movie?.releaseYear?.year || ""}</p>
-                <img class="movie-img" src="${movie?.primaryImage?.url || ""}" alt="" srcset="">
-                  <div class="info-add-box"> 
-                    <button>info</button>
-                    <button>+</button>
-                  </div>
-                <p class="descriptions">${movie.plot.plotText.plainText}</p> 
-              </div>  
-            `
-          }).join('')
-        })
-
-    // FETCH (row3)
-    fetch(row3Url, options)
-      .then(res => res.json())
-      .then(data => {
-        console.log("data test (row3): ", data.results);
-
-        let row3Data = data.results.filter(obj => {
-          return obj.releaseYear !== null && obj.releaseYear.year !== null && obj.plot !== null && obj.primaryImage !== null
-        });
-        console.log('row3Data: ', row3Data);
-    
-          // Render Category: ???
-          movieCardBoxEl3.innerHTML = row3Data.map((movie) => {
-            console.log(movie)
-            // movieTitle: creates "..." if movie title is too long
-            let movieTitle = () => {
-              if (movie.titleText.text.length >= 12) {
-                return movie.titleText.text.substring(0,12) + "..."
-              } else {
-                return movie.titleText.text
-              }
-            }
-      
-            return `
-              <div class="movie-cards">
-                <h2>${movieTitle()}</h2>
-                <p>${movie?.releaseYear?.year || ""}</p>
-                <img class="movie-img" src="${movie?.primaryImage?.url || ""}" alt="" srcset="">
-                  <div class="info-add-box"> 
-                    <button>info</button>
-                    <button>+</button>
-                  </div>
-                <p class="descriptions">${movie.plot.plotText.plainText}</p> 
-              </div>  
-            `
-          }).join('')
-        })
     })
     .catch(err => console.error('error:' + err));
+
+  // FETCH (row2)
+fetch(row2Url, options)
+  .then(res => res.json())
+  .then(data => {
+    console.log("data test (row2): ", data.results);
+
+    let row2Data = data.results.filter(obj => {
+      return obj.releaseYear !== null && obj.releaseYear.year !== null && obj.plot !== null && obj.primaryImage !== null
+    });
+    console.log('row2Data: ', row2Data);
+
+      // Render Category: Crime
+      movieCardBoxEl2.innerHTML = row2Data.map((movie) => {
+        console.log(movie)
+        // movieTitle: creates "..." if movie title is too long
+        let movieTitle = () => {
+          if (movie.titleText.text.length >= 12) {
+            return movie.titleText.text.substring(0,12) + "..."
+          } else {
+            return movie.titleText.text
+          }
+        }
+  
+        return `
+          <div class="movie-cards">
+            <h2>${movieTitle()}</h2>
+            <p>${movie?.releaseYear?.year || ""}</p>
+            <img class="movie-img" src="${movie?.primaryImage?.url || ""}" alt="" srcset="">
+              <div class="info-add-box"> 
+                <button>info</button>
+                <button>+</button>
+              </div>
+            <p class="descriptions">${movie.plot.plotText.plainText}</p> 
+          </div>  
+        `
+      }).join('')
+    })
+
+// FETCH (row3)
+fetch(row3Url, options)
+  .then(res => res.json())
+  .then(data => {
+    console.log("data test (row3): ", data.results);
+
+    let row3Data = data.results.filter(obj => {
+      return obj.releaseYear !== null && obj.releaseYear.year !== null && obj.plot !== null && obj.primaryImage !== null
+    });
+    console.log('row3Data: ', row3Data);
+
+      // Render Category: ???
+      movieCardBoxEl3.innerHTML = row3Data.map((movie) => {
+        console.log(movie)
+        // movieTitle: creates "..." if movie title is too long
+        let movieTitle = () => {
+          if (movie.titleText.text.length >= 12) {
+            return movie.titleText.text.substring(0,12) + "..."
+          } else {
+            return movie.titleText.text
+          }
+        }
+  
+        return `
+          <div class="movie-cards">
+            <h2>${movieTitle()}</h2>
+            <p>${movie?.releaseYear?.year || ""}</p>
+            <img class="movie-img" src="${movie?.primaryImage?.url || ""}" alt="" srcset="">
+              <div class="info-add-box"> 
+                <button>info</button>
+                <button>+</button>
+              </div>
+            <p class="descriptions">${movie.plot.plotText.plainText}</p> 
+          </div>  
+        `
+      }).join('')
+    })
 
 // ----------------------------------------------------------------------->
 
@@ -203,6 +204,13 @@ searchEl.addEventListener('click', (e) => {
           return Math.floor(Math.random() * (max - min) + min);
         }
 
+        let addToListEl = document.querySelector('#addToList')
+
+        let myList = []
+        addToListEl.addEventListener('click', () => {
+            console.log("clicked");
+      })
+
         return `
           <div class="movie-cards">
             <h2>${movieTitle()}</h2>
@@ -210,7 +218,7 @@ searchEl.addEventListener('click', (e) => {
             <img class="movie-img" src="${movie?.primaryImage?.url || ""}" alt="" srcset="">
               <div class="info-add-box"> 
                 <button>info</button>
-                <button>+</button>
+                <button id="addToList">+</button>
               </div>
 
           </div>  
@@ -218,4 +226,15 @@ searchEl.addEventListener('click', (e) => {
       }).join('')
     })
     .catch(err => console.error('error:' + err));
+
+
+
+
+
+
+
+
+
+
 })
+

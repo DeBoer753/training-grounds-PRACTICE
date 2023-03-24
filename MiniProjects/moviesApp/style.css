@@ -94,4 +94,7 @@ header p:hover {
   margin: 10px 20px 10px 20px;
   font-size: 10px;
 }
+.movie-cards button:hover {
+  cursor: pointer;
+}
 
